@@ -89,6 +89,7 @@ static bool canceled = false;
 
 GPtrArray *loaded_plugins;
 
+#ifndef __MINGW32__
 static
 void sigint_handler(int signum)
 {
@@ -102,6 +103,7 @@ void sigint_handler(int signum)
 
 	canceled = true;
 }
+#endif
 
 static
 void init_static_data(void)
@@ -2623,6 +2625,7 @@ void set_auto_log_levels(struct bt_config *cfg)
 	}
 }
 
+#ifndef __MINGW32__
 static
 void set_sigint_handler(void)
 {
@@ -2637,6 +2640,7 @@ void set_sigint_handler(void)
 		sigaction(SIGINT, &new_action, NULL);
 	}
 }
+#endif
 
 int main(int argc, const char **argv)
 {
@@ -2645,7 +2649,9 @@ int main(int argc, const char **argv)
 	struct bt_config *cfg;
 
 	init_log_level();
+#ifndef __MINGW32__
 	set_sigint_handler();
+#endif
 	init_static_data();
 	cfg = bt_config_cli_args_create_with_default(argc, argv, &retcode);
 
