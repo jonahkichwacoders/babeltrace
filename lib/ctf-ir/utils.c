@@ -45,7 +45,7 @@ static GHashTable *reserved_keywords_set;
 static int init_done;
 static int global_data_refcount;
 
-static __attribute__((constructor))
+static
 void trace_init(void)
 {
 	size_t i;
@@ -98,6 +98,10 @@ int bt_ctf_validate_identifier(const char *input_string)
 		BT_LOGE("strdup() failed.");
 		ret = -1;
 		goto end;
+	}
+
+	if (!reserved_keywords_set) {
+		trace_init();
 	}
 
 	token = strtok_r(string, " ", &save_ptr);

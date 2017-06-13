@@ -61,10 +61,11 @@ static
 struct bt_plugin_set *(*bt_plugin_python_create_all_from_file_sym)(const char *path) =
 	bt_plugin_python_create_all_from_file;
 #else /* BT_BUILT_IN_PYTHON_PLUGIN_SUPPORT */
-static GModule *python_plugin_provider_module;
+//static GModule *python_plugin_provider_module;
 static
 struct bt_plugin_set *(*bt_plugin_python_create_all_from_file_sym)(const char *path);
 
+/*
 __attribute__((constructor)) static
 void init_python_plugin_provider(void) {
 	BT_LOGD_STR("Loading Python plugin provider module.");
@@ -103,6 +104,7 @@ void fini_python_plugin_provider(void) {
 		python_plugin_provider_module = NULL;
 	}
 }
+*/
 #endif
 
 extern
