@@ -614,7 +614,7 @@ AS_IF([test "x$enable_api_doc" = "xyes"],
 
 
 # Set global CFLAGS in AM_CFLAGS
-AM_CFLAGS="-Wall -Wformat $PTHREAD_CFLAGS $GLIB_CFLAGS"
+AM_CFLAGS="$PTHREAD_CFLAGS -Wall -Wformat $GLIB_CFLAGS"
 AC_SUBST(AM_CFLAGS)
 
 # Set global CPPFLAGS in AM_CPPFLAGS
