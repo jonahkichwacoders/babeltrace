@@ -103,8 +103,9 @@ enum bt_ctf_notif_iter_medium_status ds_file_mmap_next(
 		goto end;
 	}
 	/* Round up to next page, assuming page size being a power of 2. */
-	ds_file->mmap_len = (ds_file->mmap_valid_len + page_size - 1)
-			& ~(page_size - 1);
+//	ds_file->mmap_len = (ds_file->mmap_valid_len + page_size - 1)
+//			& ~(page_size - 1);
+	ds_file->mmap_len = ds_file->mmap_valid_len;
 	/* Map new region */
 	assert(ds_file->mmap_len);
 	ds_file->mmap_addr = bt_mmap((void *) 0, ds_file->mmap_len,
